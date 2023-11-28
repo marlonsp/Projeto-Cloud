@@ -45,15 +45,18 @@ resource "aws_lb_listener" "front_end" {
   }
 }
 
+resource "aws_key_pair" "example" {
+  key_name   = "marlonsp-key-pair"
+  public_key = file("chave-aws.pub")
+}
+
 resource "aws_launch_template" "lt" {
   name_prefix            = "lt-"
   image_id               = "ami-0230bd60aa48260c6"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
 
-  iam_instance_profile {
-    name = "ec2_profile"
-  }
+  key_name = "marlonsp-key-pair"
 }
 
 resource "aws_autoscaling_group" "asg" {
@@ -76,5 +79,82 @@ resource "aws_autoscaling_group" "asg" {
     key                 = "Name"
     value               = "marlonsp-ASG-Instance"
     propagate_at_launch = true
+  }
+
+  health_check_grace_period  = 300
+
+  force_delete = true
+}
+
+resource "aws_cloudwatch_metric_alarm" "cpu_alarm_high" {
+  alarm_name          = "cpu-utilization-alarm"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 2
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/EC2"
+  period              = 300
+  statistic           = "Average"
+  threshold           = 70
+
+  dimensions = {
+    AutoScalingGroupName = aws_autoscaling_group.asg.name
+  }
+
+  alarm_description = "Alarm when CPU exceeds 70%"
+
+  actions_enabled = true
+  alarm_actions   = [aws_autoscaling_policy.scale_up.arn]
+}
+
+resource "aws_autoscaling_policy" "scale_up" {
+  name                   = "scale-up"
+  scaling_adjustment     = 1
+  adjustment_type        = "ChangeInCapacity"
+  cooldown               = 10
+  autoscaling_group_name = aws_autoscaling_group.asg.name
+
+}
+
+resource "aws_cloudwatch_metric_alarm" "cpu_alarm_down"{
+  alarm_name          = "cpu-utilization-alarm-down"
+  comparison_operator = "LessThanThreshold"
+  evaluation_periods  = 2
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/EC2"
+  period              = 300
+  statistic           = "Average"
+  threshold           = 20
+
+  dimensions = {
+    AutoScalingGroupName = aws_autoscaling_group.asg.name
+  }
+
+  alarm_description = "Alarm when CPU is less than 20%"
+
+  actions_enabled = true
+  alarm_actions   = [aws_autoscaling_policy.scale_down.arn]
+}
+
+resource "aws_autoscaling_policy" "scale_down" {
+  name                   = "scale-down"
+  scaling_adjustment     = -1
+  adjustment_type        = "ChangeInCapacity"
+  cooldown               = 10
+  autoscaling_group_name = aws_autoscaling_group.asg.name
+
+  lifecycle {
+    create_before_destroy = true 
+  }
+}
+
+resource "aws_autoscaling_policy" "scale_out_policy" {
+  name                   = "scale-out-policy"
+  scaling_adjustment     = 1
+  adjustment_type        = "ChangeInCapacity"
+  cooldown               = 300
+  autoscaling_group_name = aws_autoscaling_group.asg.name
+
+  lifecycle {
+    create_before_destroy = true 
   }
 }

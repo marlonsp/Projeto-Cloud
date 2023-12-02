@@ -73,7 +73,7 @@ resource "aws_launch_template" "marlonsp_lt" {
       source /home/ubuntu/myappenv/bin/activate
 
       # Clonagem do repositório da aplicação
-      git clone https://github.com/ArthurCisotto/aplicacao_projeto_cloud.git /home/ubuntu/myapp
+      git clone https://github.com/marlonsp/Cloud-crudApp.git /home/ubuntu/myapp
 
       # Instalação das dependências da aplicação
       pip install -r /home/ubuntu/myapp/requirements.txt

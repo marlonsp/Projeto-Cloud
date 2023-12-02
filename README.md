@@ -62,8 +62,8 @@ A aplicação demonstra habilidade na conexão com o banco de dados RDS, permiti
 
 ### 1 - Instalação do Terraform e AWS CLI:
 
-Baixe e instale o Terraform: [Download do Terraform](https://developer.hashicorp.com/terraform/install)
-Instale a AWS CLI: [Instruções de Instalação da AWS CLI](https://docs.aws.amazon.com/pt_br/cli/latest/userguide/getting-started-install.html)
+* Baixe e instale o Terraform: [Download do Terraform](https://developer.hashicorp.com/terraform/install)
+* Instale a AWS CLI: [Instruções de Instalação da AWS CLI](https://docs.aws.amazon.com/pt_br/cli/latest/userguide/getting-started-install.html)
 ### 2 - Geração das Chaves de Acesso AWS no IAM:
 
 Acesse o Console da AWS e vá para o serviço IAM (Identity and Access Management).

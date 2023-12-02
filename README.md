@@ -73,7 +73,7 @@ Na conclusão, anote as chaves de acesso (Access Key ID e Secret Access Key).
 ### 3 - Configuração do AWS CLI:
 
 Abra o terminal e execute o comando aws configure.
-Insira as chaves de acesso, a região padrão, e o formato de saída desejado.
+Insira as chaves de acesso (geradas no último passo), a região padrão (us-east-1), e o formato de saída desejado (Pode ser vazio).
 ### 4 - Criação do Bucket S3 e Alteração do Código Main para Usá-lo:
 
 No Console da AWS, crie um novo bucket S3.

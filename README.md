@@ -58,7 +58,11 @@ A aplicação é desenvolvida como uma API RESTful ou uma aplicação web simple
 ### 6.1 Conexão com o Banco de Dados
 A aplicação demonstra habilidade na conexão com o banco de dados RDS, permitindo a execução de operações CRUD (Create, Read, Update, Delete). Essa funcionalidade é essencial para a interação eficiente e consistente com o banco de dados, garantindo que a aplicação possa armazenar e recuperar dados no RDS provisionado.
 
-## 7. Tutorial para utilização do projeto:
+## 7. Diagrama da arquitetura AWS
+
+![diagrama_arquitetura](diagrama_arquitetura.png)
+
+## 8. Tutorial para utilização do projeto:
 
 ### 1 - Instalação do Terraform e AWS CLI:
 
@@ -119,5 +123,5 @@ terraform destroy -auto-approve
 
 ### [Vídeo demonstrando o tutorial](https://youtu.be/v1_EZqx88uk)
 
-## 8. Estimativa de Custos do Projeto: Anexo da Calculadora de Preços da AWS
+## 9. Estimativa de Custos do Projeto: Anexo da Calculadora de Preços da AWS
 A estimativa detalhada dos custos associados ao projeto pode ser encontrada no arquivo "Estimativa de Custos - Calculadora de Preços da AWS.pdf", anexado a esta documentação. Esse documento fornece uma visão abrangente dos custos envolvidos na implementação e operação da infraestrutura proposta na AWS, ajudando a compreender e planejar efetivamente os gastos associados ao projeto. Recomenda-se revisar cuidadosamente a estimativa de custos para obter uma compreensão clara dos custos previstos antes de prosseguir com a implementação da infraestrutura.

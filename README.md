@@ -33,7 +33,7 @@ A configuração dos Target Groups no projeto, especificada no arquivo ec2.tf, �
 A integração de Health Checks, como delineado no arquivo ec2.tf, desempenha um papel fundamental no fortalecimento da resiliência da aplicação, assegurando que apenas instâncias EC2 saudáveis recebam tráfego. Esses checks, implementados no Target Group do Application Load Balancer (ALB), avaliam a condição das instâncias com base em critérios como respostas de protocolo, intervalos e contagens de sucesso.
 
 ## 4. EC2 com Auto Scaling
-## 4.1 Launch Template
+### 4.1 Launch Template
 
 No contexto da gestão eficiente das instâncias EC2 e escalabilidade automática, o projeto incorpora a criação de um Launch Template, conforme definido no arquivo ec2.tf. Nesse bloco de código, é configurado um recurso aws_launch_template que estabelece uma imagem de máquina (AMI) pré-instalada com a aplicação. Esse Launch Template é fundamental para a escalabilidade automática, pois define as configurações iniciais necessárias para a criação de instâncias EC2 em resposta a variações na carga de trabalho. A utilização de uma AMI pré-configurada com a aplicação garante consistência e eficiência na implementação das instâncias, contribuindo para uma arquitetura ágil e responsiva às demandas dinâmicas da aplicação.
 
